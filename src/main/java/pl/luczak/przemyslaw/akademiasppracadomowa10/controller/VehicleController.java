@@ -26,20 +26,20 @@ public class VehicleController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateVehicle(@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle vehicle) {
         return vehicleService.updateVehicle(vehicle)
-                ? new ResponseEntity<>(HttpStatus.OK)
+                ? new ResponseEntity<>(vehicle, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping
-    public ResponseEntity<?> addVehicle(@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vehicle) {
         return vehicleService.addVehicle(vehicle)
-                ? new ResponseEntity<>(HttpStatus.OK)
+                ? new ResponseEntity<>(vehicle, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> removeVehicle(@PathVariable long id) {
         return vehicleService.removeVehicle(id)
                 ? new ResponseEntity<>(HttpStatus.OK)
